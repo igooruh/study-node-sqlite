@@ -25,4 +25,6 @@ const createTables = async() => {
     console.log('Categories table created!');
 }
 
-createTables();
+createTables().catch(err => {
+    console.log(err);
+});
