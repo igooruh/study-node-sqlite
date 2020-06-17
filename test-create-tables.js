@@ -7,6 +7,11 @@ const initDB = databaseFile => new Promise((resolve, reject) => {
     });
 });
 
+const createTables = async() => {
+
+    const db = await initDB('bank.sqlite3');
+}
+
 const db = new sqlite.Database('bank.sqlite3', err => {
     console.log(err, 'init')
     db.run(`
