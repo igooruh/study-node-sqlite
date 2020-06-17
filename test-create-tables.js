@@ -17,7 +17,15 @@ const run = (db, query) => new Promise((resolve, reject) => {
 const createTables = async() => {
 
     const db = await initDB('bank.sqlite3');
+    await run(db, `
+        CREATE TABLE categories(
+        id INTEGER PRIMARY KEY NOT NULL,
+        category TEXT);
+    `);
+    console.log('Categories table created!');
 }
+
+createTables();
 
 const db = new sqlite.Database('bank.sqlite3', err => {
     console.log(err, 'init')
