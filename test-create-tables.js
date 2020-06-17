@@ -1,5 +1,12 @@
 const sqlite = require('sqlite3').verbose();
 
+const initDB = databaseFile => new Promise((resolve, reject) => {
+
+    const db = new sqlite.Database(databaseFile, err => {
+        err ? reject(err) : resolve(err);
+    });
+});
+
 const db = new sqlite.Database('bank.sqlite3', err => {
     console.log(err, 'init')
     db.run(`
