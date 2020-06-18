@@ -17,8 +17,9 @@ const run = (db, query) => new Promise((resolve, reject) => {
 const createTables = async() => {
 
     const db = await initDB('bank.sqlite3');
+
     await run(db, `
-            CREATE TABLE categories(
+        CREATE TABLE categories(
             id INTEGER PRIMARY KEY NOT NULL,
             category TEXT
         );
@@ -26,7 +27,7 @@ const createTables = async() => {
     console.log('Categories table created!');
 
     await run(db, `
-            CREATE TABLE products(
+        CREATE TABLE products(
             id INTEGER PRIMARY KEY NOT NULL,
             product TEXT,
             price REAL
@@ -35,7 +36,7 @@ const createTables = async() => {
     console.log('Products table created!');
 
     await run(db, `
-            CREATE TABLE images(
+        CREATE TABLE images(
             id INTEGER PRIMARY KEY NOT NULL,
             description TEXT,
             url TEXT,
@@ -43,6 +44,14 @@ const createTables = async() => {
         );
     `);
     console.log('Images table created!');
+
+    await run(db, `
+        CREATE TABLE categories_products(
+            product_id INTEGER REFERENCES products(id),
+            category_id INTEGER REFERENCES categories(id)
+        );
+    `);
+    console.log('Categories and products table created!');
 }
 
 createTables().catch(err => {
