@@ -18,20 +18,31 @@ const createTables = async() => {
 
     const db = await initDB('bank.sqlite3');
     await run(db, `
-        CREATE TABLE categories(
-        id INTEGER PRIMARY KEY NOT NULL,
-        category TEXT);
+            CREATE TABLE categories(
+            id INTEGER PRIMARY KEY NOT NULL,
+            category TEXT
+        );
     `);
     console.log('Categories table created!');
 
     await run(db, `
-        CREATE TABLE products(
-        id INTEGER PRIMARY KEY NOT NULL,
-        product TEXT,
-        price REAL
+            CREATE TABLE products(
+            id INTEGER PRIMARY KEY NOT NULL,
+            product TEXT,
+            price REAL
         );
     `);
     console.log('Products table created!');
+
+    await run(db, `
+            CREATE TABLE images(
+            id INTEGER PRIMARY KEY NOT NULL,
+            description TEXT,
+            url TEXT,
+            product_id INTEGER REFERENCES products(id)
+        );
+    `);
+    console.log('Images table created!');
 }
 
 createTables().catch(err => {
