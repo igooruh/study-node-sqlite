@@ -23,6 +23,15 @@ const createTables = async() => {
         category TEXT);
     `);
     console.log('Categories table created!');
+
+    await run(db, `
+        CREATE TABLE products(
+        id INTEGER PRIMARY KEY NOT NULL,
+        product TEXT,
+        price REAL
+        );
+    `);
+    console.log('Products table created!');
 }
 
 createTables().catch(err => {
