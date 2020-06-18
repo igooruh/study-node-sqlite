@@ -7,9 +7,9 @@ const initDB = databaseFile => new Promise((resolve, reject) => {
     });
 });
 
-const run = (db, query) => new Promise((resolve, reject) => {
+const run = (db, query, values) => new Promise((resolve, reject) => {
 
-    db.run(query, err => {
+    db.run(query, values, err => {
         err ? reject(err) : resolve(err);
     });
 });
