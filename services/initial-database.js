@@ -14,7 +14,7 @@ const run = (db, query, values) => new Promise((resolve, reject) => {
     });
 });
 
-const listAll = (db, query, values) => new Promise((resolve, reject) => {
+const listAllSpecific = (db, query, values) => new Promise((resolve, reject) => {
 
     db.all(query, values, (err, rows) => err ? reject(err) : resolve(rows));
 });
@@ -22,5 +22,5 @@ const listAll = (db, query, values) => new Promise((resolve, reject) => {
 module.exports = {
     initDB,
     run,
-    listAll
+    listAllSpecific
 }
