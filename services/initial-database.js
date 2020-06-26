@@ -14,7 +14,13 @@ const run = (db, query, values) => new Promise((resolve, reject) => {
     });
 });
 
+const listAll = (db, query, values) => new Promise((resolve, reject) => {
+
+    db.all(query, values, (err, rows) => err ? reject(err) : resolve(rows));
+});
+
 module.exports = {
     initDB,
-    run
+    run,
+    listAll
 }
