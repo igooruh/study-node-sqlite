@@ -15,11 +15,18 @@ const findAll = async() => {
 const remove = async id => {
 
     const db = await database.initDB('../bankApi.sqlite3');
-    await database.queryWithParams(db, 'delete from categories where id = ?', [id]);
+    await database.queryWithParams(db, 'delete from categories where id=?', [id]);
+}
+
+const update = async (id, data) => {
+
+    const db = await database.initDB('../bankApi.sqlite3');
+    await database.queryWithParams(db, 'update categories set category=? where id=?', [...data, id]);
 }
 
 module.exports = {
     create,
     findAll,
-    remove
+    remove,
+    update
 }
