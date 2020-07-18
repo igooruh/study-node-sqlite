@@ -9,7 +9,7 @@ const create = async data => {
 const findAll = async() => {
 
     const db = await database.initDB('../bankApi.sqlite3');
-    return await database.queryWithParams(db, `select * from category`);
+    return await database.queryAll(db, `select * from category`);
 }
 
 const remove = async id => {
@@ -24,9 +24,16 @@ const update = async (id, data) => {
     await database.queryWithParams(db, 'update categories set category=? where id=?', [...data, id]);
 }
 
+const findAllPaginated = async({ pageSize = 1, currentPage = 0 }) => {
+
+    const db = await database.initDB('../bankApi.sqlite3');
+    return await database.queryAll(db, `select * from categories limit ${currentPage * pageSize}, ${pageSize}`);
+}
+
 module.exports = {
     create,
     findAll,
     remove,
-    update
+    update,
+    findAllPaginated
 }
