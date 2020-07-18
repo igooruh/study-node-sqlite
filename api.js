@@ -2,6 +2,9 @@ const categories = require('./model/categories');
 
 const createCategory = async() => {
 
-    categories.create([1, 'opa']);
+    await categories.create([1, 'opa']);
+    const cats = await categories.findAll;
+    console.log(cats);
+    await categories.remove(1);
 }
 createCategory
