@@ -8,7 +8,11 @@ const initDB = databaseFile => new Promise((resolve, reject) => {
 const queryWithParams = (db, query, values) => new Promise((reject, resolve) =>
     db.run(query, values), err => err ? reject(err) : resolve());
 
+const queryAll = (db, query) => new Promise((reject, resolve) =>
+    db.run(query, (err, row) => err ? reject(err) : resolve(row)));
+
 module.exports = {
     initDB,
+    queryAll,
     queryWithParams
 }
