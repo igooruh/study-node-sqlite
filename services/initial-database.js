@@ -9,7 +9,7 @@ const queryWithParams = (db, query, values) => new Promise((reject, resolve) =>
     db.run(query, values), err => err ? reject(err) : resolve());
 
 const queryAll = (db, query) => new Promise((reject, resolve) =>
-    db.run(query, (err, row) => err ? reject(err) : resolve(row)));
+    db.all(query, (err, row) => err ? reject(err) : resolve(row)));
 
 module.exports = {
     initDB,
