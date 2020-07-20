@@ -1,4 +1,4 @@
-const categories = require('./model/categories');
+const categories = require('./model/categories')('./banco.sqlite3');
 
 const createCategory = async() => {
 
